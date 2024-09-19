@@ -1,18 +1,20 @@
-package com.lauranyaaga.totosteps
+package com.akirachix.totosteps
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.lauranyaaga.totosteps.databinding.ActivityTeaserTwoBinding
+
+import com.akirachix.totosteps.databinding.ActivityTeaserTwoBinding
 
 class TeaserTwoActivity : AppCompatActivity() {
     lateinit var binding: ActivityTeaserTwoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTeaserTwoBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_teaser_two)
-
+        setContentView(binding.root)
+   binding.btnContinue.setOnClickListener {
+       val intent = Intent(this, TeaserThreeActivity::class.java)
+       startActivity(intent)
+   }
     }
 }

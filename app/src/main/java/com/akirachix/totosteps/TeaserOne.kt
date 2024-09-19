@@ -1,14 +1,19 @@
-package com.lauranyaaga.totosteps
+package com.akirachix.totosteps
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.lauranyaaga.totosteps.databinding.OneTeaserBinding
+import com.akirachix.totosteps.databinding.OneTeaserBinding
 
-class MainActivity : AppCompatActivity() {
+class TeaserOne : AppCompatActivity() {
     lateinit var binding: OneTeaserBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = OneTeaserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.btnGetStarted.setOnClickListener {
+            val intent = Intent(this, TeaserTwoActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
