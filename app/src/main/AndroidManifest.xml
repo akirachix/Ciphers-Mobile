@@ -13,16 +13,49 @@
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31">
         <activity
-            android:name="com.akirachix.totosteps.TeaserTwoActivity"
+            android:name=".ViewMilestoneAssessmentResults"
             android:exported="false" />
         <activity
-            android:name="com.akirachix.totosteps.TeaserThreeActivity"
+            android:name=".DevelopmentalMilestonesScreenSix"
             android:exported="false" />
         <activity
-            android:name="com.akirachix.totosteps.TeaserOne"
+            android:name=".DevelopmentalMilestonesScreenFive"
             android:exported="false" />
         <activity
-            android:name="com.akirachix.totosteps.MainActivity"
+            android:name=".DevelopmentalMilestonesScreenFour"
+            android:exported="false" />
+        <activity
+            android:name=".DevelopmentalMilestonesScreenThree"
+            android:exported="false" />
+        <activity
+            android:name=".DevelopmentalMilestonesScreenTwo"
+            android:exported="false" />
+        <activity
+            android:name=".DevelopmentalMilestonesScreenOne"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewResults"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionScreenTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionScreenOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeaserTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeaserThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeaserOne"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

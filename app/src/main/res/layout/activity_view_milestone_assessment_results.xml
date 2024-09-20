@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/purpleBackground"
+        android:layout_width="419dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/purple"
+        app:layout_constraintBottom_toBottomOf="@id/titleTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="16dp"
+        android:text="Assessment"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/backArrow"
+        android:layout_width="120dp"
+        android:layout_height="78dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        android:text="←"
+        android:textColor="@android:color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="116dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito_black"
+        android:text="Results"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backArrow" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/actionCardView"
+        android:layout_width="413dp"
+        android:layout_height="337dp"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="#FFA500"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resultTextView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/actEarlyTitle"
+                android:layout_width="192dp"
+                android:layout_height="45dp"
+                android:fontFamily="@font/nunito_black"
+                android:text="ACT EARLY"
+                android:textColor="@color/purple"
+                android:textSize="34dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/actEarlyDescription"
+                android:layout_width="366dp"
+                android:layout_height="114dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_medium"
+                android:text="If you selected 'No' for any of the questions asked, it's important to act early by talking with your child's professional."
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/actEarlyTitle" />
+
+            <TextView
+                android:id="@+id/dontWaitText"
+                android:layout_width="291dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Don't wait. Make a difference."
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.303"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/actEarlyDescription" />
+
+            <TextView
+                android:id="@+id/useResourcesText"
+                android:layout_width="301dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Use the resources provided to learn more on how to support your child's growth."
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.272"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dontWaitText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/viewMilestonesButton"
+        android:layout_width="220dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/nunito_black"
+        android:text="View Milestones"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actionCardView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

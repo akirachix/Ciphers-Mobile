@@ -15,9 +15,13 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/toto" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/mother"
+        android:background="@color/purple"
+        />
 
     <TextView
         android:id="@+id/textView"
@@ -48,8 +52,8 @@
 
     <Button
         android:id="@+id/btnSkipTwo"
-        android:layout_width="122dp"
-        android:layout_height="47dp"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="72dp"
@@ -64,8 +68,8 @@
 
     <Button
         android:id="@+id/btnContinueOne"
-        android:layout_width="143dp"
-        android:layout_height="50dp"
+        android:layout_width="146dp"
+        android:layout_height="59dp"
         android:layout_marginStart="85dp"
         android:layout_marginEnd="48dp"
         android:backgroundTint="#F58220"

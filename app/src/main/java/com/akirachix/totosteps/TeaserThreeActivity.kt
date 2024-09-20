@@ -1,5 +1,6 @@
 package com.akirachix.totosteps
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,15 @@ class TeaserThreeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
        binding =  ActivityTeaserThreeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnContinueOne.setOnClickListener {
+            val intent = Intent(this, QuestionScreenOneActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnSkipTwo.setOnClickListener {
+            val intent = Intent(this, QuestionScreenOneActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

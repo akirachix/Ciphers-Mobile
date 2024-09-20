@@ -16,5 +16,11 @@ class TeaserTwoActivity : AppCompatActivity() {
        val intent = Intent(this, TeaserThreeActivity::class.java)
        startActivity(intent)
    }
+        binding.btnSkip.setOnClickListener {
+            val intent = Intent(this, TeaserThreeActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }
