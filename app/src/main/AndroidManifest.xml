@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,49 +18,82 @@
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31">
         <activity
-            android:name=".ViewMilestoneAssessmentResults"
+            android:name=".MilestoneResources"
             android:exported="false" />
         <activity
-            android:name=".DevelopmentalMilestonesScreenSix"
+            android:name=".MilestonesActivity"
             android:exported="false" />
         <activity
-            android:name=".DevelopmentalMilestonesScreenFive"
+            android:name=".ChildrenActivity"
             android:exported="false" />
         <activity
-            android:name=".DevelopmentalMilestonesScreenFour"
+            android:name=".activity.HomeScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".DevelopmentalMilestonesScreenThree"
+            android:name=".activity.ParentsAgreementActivity"
             android:exported="false" />
         <activity
-            android:name=".DevelopmentalMilestonesScreenTwo"
+            android:name=".activity.AssessmentOptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".DevelopmentalMilestonesScreenOne"
+            android:name=".activity.ViewAutismResultsActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".activity.SuccessfulSubmissionActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewResults"
+            android:name=".activity.UploadedAutismImage"
             android:exported="false" />
         <activity
-            android:name=".QuestionScreenTwoActivity"
+            android:name=".activity.AutismUploadPhoto"
             android:exported="false" />
         <activity
-            android:name=".QuestionScreenOneActivity"
+            android:name=".activity.ChildAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".TeaserTwoActivity"
+            android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".TeaserThreeActivity"
+            android:name=".activity.ViewMilestoneAssessmentResults"
             android:exported="false" />
         <activity
-            android:name=".TeaserOne"
+            android:name=".activity.DevelopmentalMilestonesScreenSix"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.DevelopmentalMilestonesScreenFour"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DevelopmentalMilestonesScreenThree"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DevelopmentalMilestonesScreenTwo"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DevelopmentalMilestonesScreenOne"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ViewResults"
+            android:exported="false" />
+        <activity
+            android:name=".activity.QuestionScreenTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.QuestionScreenOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TeaserTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TeaserThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TeaserOne"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
