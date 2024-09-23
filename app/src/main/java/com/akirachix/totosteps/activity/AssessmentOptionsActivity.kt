@@ -11,6 +11,7 @@ import com.akirachix.totosteps.databinding.ActivityAssessmentOptionsBinding
 class AssessmentOptionsActivity : AppCompatActivity() {
     lateinit var binding: ActivityAssessmentOptionsBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAssessmentOptionsBinding.inflate(layoutInflater)
@@ -18,28 +19,29 @@ class AssessmentOptionsActivity : AppCompatActivity() {
         binding.backArrow.setOnClickListener {
             finish()
         }
+
+
         val btnProceed = binding.btnProceed
         val assessmentOptionsGroup = binding.rgOptions
 
         btnProceed.setOnClickListener {
-            val selectedOptionId = assessmentOptionsGroup.checkedRadioButtonId
+            val selectedOptionId = binding.rgOptions.checkedRadioButtonId
 
-            // Check if any option is selected
             if (selectedOptionId != -1) {
                 val selectedOption = findViewById<RadioButton>(selectedOptionId)
 
-                if (selectedOption.text == "Questionnaire") {
-                    proceedToQuestionnaire() // Call method to proceed to Questionnaire screen
-                } else if (selectedOption.text == "Image Upload") {
-                    proceedToImageUpload() // Call method to proceed to Image Upload screen
+                when (selectedOption.text) {
+                    "Questionnaire" -> proceedToQuestionnaire()
+                    "Image Upload" -> proceedToImageUpload()
+                    else -> {
+                        Toast.makeText(this, "Invalid selection", Toast.LENGTH_SHORT).show()
+                    }
                 }
-//                val selectedOption: RadioButton = findViewById(selectedOptionId)
-
             } else {
-                // Show message to select an assessment option
                 Toast.makeText(this, "Please select the assessment option", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     fun proceedToImageUpload() {

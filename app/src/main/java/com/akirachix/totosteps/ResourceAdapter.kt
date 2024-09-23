@@ -7,13 +7,13 @@ import com.akirachix.totosteps.databinding.ActivityResourceListBinding
 import com.akirachix.totosteps.databinding.ChildrenListViewBinding
 import com.akirachix.totosteps.databinding.ChildrenMilestoneListBinding
 
-class ResourceAdapter(var milestones: List<resources>):RecyclerView.Adapter<MilestonesViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MilestonesViewHolder {
+class ResourceAdapter(var milestones: List<resources>):RecyclerView.Adapter<ResourcesViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResourcesViewHolder {
         var binding = ActivityResourceListBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return MilestonesViewHolder(binding)
+        return ResourcesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MilestonesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ResourcesViewHolder, position: Int) {
         var children = milestones[position]
         holder.binding.tvAge.text = children.age
     }
@@ -23,7 +23,7 @@ class ResourceAdapter(var milestones: List<resources>):RecyclerView.Adapter<Mile
     }
 }
 
-class MilestonesViewHolder(var binding: ActivityResourceListBinding):RecyclerView.ViewHolder(binding.root){
+class ResourcesViewHolder(var binding: ActivityResourceListBinding):RecyclerView.ViewHolder(binding.root){
 
 }
 
