@@ -18,13 +18,23 @@
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31">
         <activity
+            android:name=".Assessement_child_resource"
+            android:exported="false" />
+        <activity
+            android:name=".MilestonesResourcesAllActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ParentsProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".MilestoneResources"
             android:exported="false" />
+
         <activity
-            android:name=".MilestonesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ChildrenActivity"
+            android:name=".AssessmentResourcesAllActivity"
             android:exported="false" />
         <activity
             android:name=".activity.HomeScreenActivity"

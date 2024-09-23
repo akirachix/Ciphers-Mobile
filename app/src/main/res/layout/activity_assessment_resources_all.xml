@@ -34,28 +34,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/assessmentResources"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:fontFamily="@font/nunito_bold"
-        android:padding="16dp"
-        android:text="Assessment Resources"
-        android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        tools:layout_editor_absoluteX="5dp" />
 
-    <TextView
-        android:id="@+id/milestoneResources"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/nunito_bold"
-        android:padding="16dp"
-        android:text="Milestone Resources"
-        android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/assessmentResources"
-        tools:layout_editor_absoluteX="5dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChildren"
+        android:layout_width="365dp"
+        android:layout_height="656dp"
+
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:listitem="@layout/activity_resource_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
