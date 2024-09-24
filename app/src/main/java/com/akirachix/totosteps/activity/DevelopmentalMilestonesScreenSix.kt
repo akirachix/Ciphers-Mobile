@@ -35,6 +35,22 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
 
         // Update progress bar as questions are answered
         updateProgressBar()
+        setupRadioGroupListeners()
+    }
+    fun setupRadioGroupListeners() {
+
+        val radioGroups = listOf(
+            findViewById<RadioGroup>(R.id.radioGroup1),
+            findViewById<RadioGroup>(R.id.radioGroup2),
+            findViewById<RadioGroup>(R.id.radioGroup3)
+
+        )
+
+        for (radioGroup in radioGroups) {
+            radioGroup.setOnCheckedChangeListener { _, _ ->
+                updateProgressBar()
+            }
+        }
     }
 
     fun allQuestionsAnswered(): Boolean {

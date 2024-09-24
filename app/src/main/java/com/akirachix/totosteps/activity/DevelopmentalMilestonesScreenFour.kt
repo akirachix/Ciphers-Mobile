@@ -34,6 +34,21 @@ class DevelopmentalMilestonesScreenFour : AppCompatActivity() {
 
         // Update progress bar as questions are answered
         updateProgressBar()
+        setupRadioGroupListeners()
+    }
+
+    fun setupRadioGroupListeners() {
+        val radioGroups = listOf(
+            findViewById<RadioGroup>(R.id.radioGroup1),
+            findViewById<RadioGroup>(R.id.radioGroup2)
+
+        )
+
+        for (radioGroup in radioGroups) {
+            radioGroup.setOnCheckedChangeListener { _, _ ->
+                updateProgressBar()
+            }
+        }
     }
 
         fun allQuestionsAnswered(): Boolean {
@@ -47,7 +62,7 @@ class DevelopmentalMilestonesScreenFour : AppCompatActivity() {
 
         fun updateProgressBar() {
             // Update progress based on answered questions
-            val totalQuestions = 4
+            val totalQuestions = 2
             val answeredQuestions = listOf(R.id.radioGroup1, R.id.radioGroup2)
                 .count { findViewById<RadioGroup>(it).checkedRadioButtonId != -1 }
 
