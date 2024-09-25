@@ -10,18 +10,18 @@
 
 
 
-        <ImageView
-            android:id="@+id/tvLogo"
-            android:layout_width="325dp"
-            android:layout_height="163dp"
-            android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/anotherlogo"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/tvLogo"
+        android:layout_width="325dp"
+        android:layout_height="163dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/anotherlogo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="417dp"
@@ -42,7 +42,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="545dp"
                 android:padding="16dp">
 
                 <TextView
@@ -127,48 +127,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
 
                 <TextView
-                    android:id="@+id/tvOr"
-                    android:layout_width="57dp"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="OR"
-                    android:textColor="@color/white"
-                    android:textSize="24dp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.501"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
-
-                <Button
-                    android:id="@+id/btnAdd"
-                    android:layout_width="264dp"
-                    android:layout_height="67dp"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/white"
-                    android:drawableLeft="@drawable/google_icon"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/nunito_black"
-                    android:padding="20dp"
-                    android:text="Continue with Google"
-                    android:textColor="@android:color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvOr" />
-
-                <TextView
                     android:id="@+id/tvLogin"
                     android:layout_width="323dp"
                     android:layout_height="34dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="48dp"
                     android:fontFamily="@font/nunito_black"
                     android:text="Don't have an account? SignUp"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -176,5 +145,5 @@
 
     </ScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
