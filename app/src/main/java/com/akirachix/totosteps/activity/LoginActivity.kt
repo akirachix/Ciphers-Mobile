@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
 import com.akirachix.totosteps.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
         setupListeners()
 
     }
+
     fun initViews() {
 
         var etEmail = binding.etEmail
@@ -52,14 +54,11 @@ class LoginActivity : AppCompatActivity() {
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return false
-        }
-        else {
+        } else {
 
             return true
 
         }
     }
 }
-
-
 
