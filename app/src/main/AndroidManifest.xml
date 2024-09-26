@@ -43,9 +43,7 @@
         <activity
             android:name=".activity.ParentsAgreementActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.AssessmentOptionsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activity.ViewAutismResultsActivity"
             android:exported="false" />
