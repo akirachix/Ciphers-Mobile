@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "https://totosteps-29a482165136.herokuapp.com/"
+    private const val BASE_URL = "https://totosteps-29a482165136.herokuapp.com"
 
     val instance: ApiInterface by lazy {
         val retrofit = Retrofit.Builder()
@@ -15,3 +15,5 @@ object ApiClient {
         retrofit.create(ApiInterface::class.java)
     }
 }
+
+
