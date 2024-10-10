@@ -10,6 +10,7 @@ import com.akirachix.totosteps.models.ParentResponse
 import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.RegistrationResponse
 import com.akirachix.totosteps.models.UserRegistration
+import com.akirachix.totosteps.resources
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -34,10 +35,26 @@ interface ApiInterface {
 
     @GET("api/parent/{parentId}/")
     suspend fun getParentData(@Path("parentId") parentId: Int): ParentResponse
+
     @GET("api/milestones/")
     fun getMilestones(): Call<List<Milestone>>
 
+    @GET("/api/resources")
+    suspend fun getResources(): Response<List<resources>>
 
-
-
+    @POST("/api/result/")
+    fun submitResult(@Body result: ResultData): Call<ResultResponse>
 }
+
+data class ResultData(
+    val milestone: Int,
+    val answers: Map<String, String>,
+    val user: Int
+)
+
+data class ResultResponse(
+    val success: Boolean,
+    val message: String
+)
+
+
