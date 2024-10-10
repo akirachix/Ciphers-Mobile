@@ -81,7 +81,7 @@ class SignupActivity : AppCompatActivity() {
         val user = UserRegistration(firstName, lastName, email, password)
 
         // Use ApiClient to make the registration API call
-        ApiClient.instance.registerUser(user).enqueue(object : Callback<RegistrationResponse> {
+        ApiClient.instance().registerUser(user).enqueue(object : Callback<RegistrationResponse> {
             override fun onResponse(call: Call<RegistrationResponse>, response: Response<RegistrationResponse>) {
                 if (response.isSuccessful) {
                     val registrationResponse = response.body()

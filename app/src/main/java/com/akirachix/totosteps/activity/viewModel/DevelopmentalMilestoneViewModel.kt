@@ -64,7 +64,7 @@ class DevelopmentalMilestoneViewModel : ViewModel() {
     val error: LiveData<String> = _error
 
     private val apiService: ApiInterface by lazy {
-        ApiClient.instance
+        ApiClient.instance()
     }
 
     // Fetch questions and filter by milestone
