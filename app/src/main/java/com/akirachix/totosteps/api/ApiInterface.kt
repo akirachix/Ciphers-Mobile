@@ -5,6 +5,8 @@ import com.akirachix.totosteps.models.ChildData
 import com.akirachix.totosteps.models.ChildResponse
 import com.akirachix.totosteps.models.LoginRequest
 import com.akirachix.totosteps.models.LoginResponse
+import com.akirachix.totosteps.models.Milestone
+import com.akirachix.totosteps.models.ParentResponse
 import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.RegistrationResponse
 import com.akirachix.totosteps.models.UserRegistration
@@ -30,6 +32,10 @@ interface ApiInterface {
     @POST("/api/children/")
     suspend fun createChild(@Body childData: ChildData): Response<ChildResponse>
 
+    @GET("api/parent/{parentId}/")
+    suspend fun getParentData(@Path("parentId") parentId: Int): ParentResponse
+    @GET("api/milestones/")
+    fun getMilestones(): Call<List<Milestone>>
 
 
 
