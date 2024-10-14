@@ -3,32 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/padding_medium"
     android:background="@android:color/white"
-    android:layout_marginBottom="8dp"
-    android:elevation="2dp">
+    android:layout_marginBottom="@dimen/margin_small"
+    android:elevation="@dimen/card_elevation">
 
     <TextView
         android:id="@+id/name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold"
         android:textColor="@color/orange"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginBottom="@dimen/line_spacing_medium" />
 
     <TextView
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         android:textColor="@color/black"
-        android:layout_marginBottom="2dp" />
+        android:layout_marginBottom="@dimen/line_spacing_small" />
 
     <TextView
         android:id="@+id/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         android:textColor="@color/black" />
+
 </LinearLayout>

@@ -1,7 +1,6 @@
 
 package com.akirachix.totosteps.activity
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +8,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.akirachix.totosteps.activity.utils.Constants
 import com.akirachix.totosteps.activity.viewModel.LoginViewModel
 import com.akirachix.totosteps.databinding.ActivityLoginBinding
+import com.akirachix.totosteps.models.LoginResponse
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -23,12 +24,13 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        // Observe login result
+        redirectIfLoggedIn()
+
+
         loginViewModel.loginResult.observe(this, Observer { result ->
             result.onSuccess { loginResponse ->
-                val userId = loginResponse.user.user_id
-                Log.d("LoginActivity", "Login successful. User ID: $userId")
-                saveUserIdToSharedPreferences(userId)
+                Log.d("LoginActivity", "Login successful. User: ${loginResponse.user.first_name}")
+                persistLogin(loginResponse)
                 showToast("Login successful")
                 navigateToChildAccount()
             }.onFailure { throwable ->
@@ -37,10 +39,19 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        // Button click listeners
+
         binding.btnSignUp.setOnClickListener { handleEmailLogin() }
         binding.tvLogin.setOnClickListener { navigateToSignUp() }
     }
+
+    private fun redirectIfLoggedIn() {
+        val sharedPreferences = getSharedPreferences(Constants.PREFS, MODE_PRIVATE)
+        val firstName = sharedPreferences.getString(Constants.FIRST_NAME, "")
+        if (firstName!!.isNotBlank()) {
+            navigateToChildAccount()
+        }
+    }
+
 
     private fun handleEmailLogin() {
         val username = binding.etEmail.text.toString().trim()
@@ -53,19 +64,23 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveUserIdToSharedPreferences(userId: Int) {
-        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        sharedPreferences.edit().putInt("USER_ID", userId).apply()
-        Log.d("LoginActivity", "User ID saved to SharedPreferences: $userId")
+    private fun persistLogin(loginResponse: LoginResponse) {
+        val sharedPreferences = getSharedPreferences(Constants.PREFS, MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+            putString(Constants.FIRST_NAME, loginResponse.user.first_name)
+            putString(Constants.LAST_NAME, loginResponse.user.last_name)
+            putInt(Constants.USER_ID, loginResponse.user.user_id)
+            apply()
+        }
+        Log.d("LoginActivity", "Login information persisted")
     }
 
     private fun navigateToChildAccount() {
         Log.d("LoginActivity", "Navigating to ChildAccountActivity")
-        val intent = Intent(this, ChildAccountActivity::class.java)
+        val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
-
 
     private fun navigateToSignUp() {
         startActivity(Intent(this, SignupActivity::class.java))

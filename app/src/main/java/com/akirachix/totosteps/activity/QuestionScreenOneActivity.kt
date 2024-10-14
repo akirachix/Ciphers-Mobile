@@ -29,7 +29,7 @@ class QuestionScreenOneActivity : AppCompatActivity() {
         question3RadioGroup = binding.question3RadioGroup
         continueButton = binding.continueButton
 
-        // Set up age spinner
+
         val ageRanges = arrayOf("please choose the age range of your child", "0-6 months","6-12 months", "1-2 years", "2-3 years", "3-4 years", "4-5 years", "5+ years")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, ageRanges)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -41,9 +41,7 @@ class QuestionScreenOneActivity : AppCompatActivity() {
                     var intent = Intent(this, QuestionScreenTwoActivity::class.java)
                     startActivity(intent)
                 }
-                // Here you would typically send the responses to a server or save them locally
-//                Toast.makeText(this, "Responses submitted successfully", Toast.LENGTH_SHORT).show()
-//                // Navigate to the next screen or finish the survey
+
             } else {
                 Toast.makeText(this, "Please answer all questions", Toast.LENGTH_SHORT).show()
             }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:background="@color/white"
@@ -12,68 +11,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/padding_medium">
 
         <TextView
             android:id="@+id/tvResourceTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:textAlignment="gravity"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginHorizontal="@dimen/margin_small"
             android:textColor="@color/black"
             android:fontFamily="@font/nunito_extrabold"
-            android:textSize="36sp"
-            android:lineSpacingExtra="4dp" />
+            android:textSize="@dimen/text_size_xxlarge"
+            android:lineSpacingExtra="@dimen/line_spacing_medium" />
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_medium"
             android:textStyle="bold"
             android:textColor="#BB3A12"
             android:fontFamily="@font/nunito_bold"
-            android:textAlignment="center"
             android:text="@string/parental_tips_to_support_your_child_s_growth"
-            android:textSize="28sp"
-            android:lineSpacingExtra="2dp" />
+            android:textSize="@dimen/text_size_large"
+            android:lineSpacingExtra="@dimen/line_spacing_small" />
 
         <TextView
             android:id="@+id/tvTips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:textColor="@color/black"
             android:fontFamily="@font/nunito"
-            android:textAlignment="textStart"
-            android:textSize="18sp"
-            android:lineSpacingExtra="4dp"
-            android:paddingBottom="8dp" />
+            android:textSize="@dimen/text_size_medium"
+            android:lineSpacingExtra="@dimen/line_spacing_medium"
+            android:paddingBottom="@dimen/padding_small" />
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:fontFamily="@font/nunito_bold"
             android:textColor="#BB3A12"
-            android:textAlignment="center"
             android:text="@string/activities_to_engage_with_your_child_for_better_growth"
-            android:textSize="28sp"
+            android:textSize="@dimen/text_size_large"
             android:textStyle="bold"
-            android:lineSpacingExtra="2dp" />
+            android:lineSpacingExtra="@dimen/line_spacing_small" />
 
         <TextView
             android:id="@+id/tvActivities"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/margin_large"
             android:fontFamily="@font/nunito"
             android:textColor="@color/black"
-            android:textAlignment="textStart"
-            android:textSize="18sp"
-            android:lineSpacingExtra="4dp"
-            android:paddingBottom="16dp" />
+            android:textSize="@dimen/text_size_medium"
+            android:lineSpacingExtra="@dimen/line_spacing_medium"
+            android:paddingBottom="@dimen/padding_medium" />
 
     </LinearLayout>
 </ScrollView>
