@@ -1,4 +1,4 @@
-package com.akirachix.totosteps
+    package com.akirachix.totosteps
 
 import android.content.Intent
 import android.view.LayoutInflater

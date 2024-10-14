@@ -9,12 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akirachix.totosteps.databinding.ActivityDevelopmentalMilestonesScreenThreeBinding
-import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.QuestionsAdapter
 import com.akirachix.totosteps.activity.viewModel.DevelopmentalMilestoneViewModel
 import com.akirachix.totosteps.api.ApiClient
-import com.akirachix.totosteps.api.ResultData
-import com.akirachix.totosteps.api.ResultResponse
+import com.akirachix.totosteps.models.ResultData
+import com.akirachix.totosteps.models.ResultResponse
 import retrofit2.Call
 
 class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
@@ -27,20 +26,20 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
         binding = ActivityDevelopmentalMilestonesScreenThreeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize ViewModel
+
         viewModel = ViewModelProvider(this).get(DevelopmentalMilestoneViewModel::class.java)
 
-        // Initialize Adapter with an empty list
+
         adapter = QuestionsAdapter(emptyList())
 
-        // Setup RecyclerView
+
         binding.rvChildren.layoutManager = LinearLayoutManager(this)
         binding.rvChildren.adapter = adapter
 
-        // Observe ViewModel data
+
         observeViewModel()
 
-        // Fetch specific questions (example: category "Social" and milestone 1)
+
         viewModel.fetchQuestions("Language", 1)
 
         setupUi()
@@ -50,8 +49,7 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
         viewModel.questions.observe(this) { questions ->
             Log.d("DevelopmentalMilestonesScreenThree", "Received ${questions.size} questions")
 
-            // Update adapter with new questions
-            if (questions.isNotEmpty()) {
+                        if (questions.isNotEmpty()) {
                 adapter.questions = questions
                 adapter.notifyDataSetChanged()
                 updateProgressBar()
@@ -61,24 +59,24 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
-            // Show or hide progress bar based on loading state
+
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
         viewModel.error.observe(this) { errorMessage ->
-            // Display error message as a toast
+
             Log.e("DevelopmentalMilestonesScreenThree", "Error: $errorMessage")
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
         }
     }
 
     private fun setupUi() {
-        // Handle "Back" button click
+
         val userId = getUserIdFromSharedPreferences()
 
         if (userId != -1) {
             Log.d("DevelopmentalMilestonesScreenThree", "User ID: $userId")
-            // Use userId as needed
+
         } else {
             Toast.makeText(this, "User ID not found", Toast.LENGTH_SHORT).show()
         }
@@ -86,7 +84,7 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
             finish()
         }
 
-        // Handle "Next" button click
+
         binding.btnNextFour.setOnClickListener {
             if (allQuestionsAnswered()) {
                 val userId = getUserIdFromSharedPreferences()
@@ -94,23 +92,22 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
                 if (userId != -1) {
                     Log.d("DevelopmentalMilestonesScreenTwo", "User ID: $userId")
 
-                    // Get user answers
+
                     val answers = collectAnswers()
 
-                    // Retrieve the milestone ID dynamically (you could fetch it from intent or use default)
+
                     val milestoneId = 1
                     if (milestoneId != -1) {
-                        // Prepare the result data
                         val resultData = ResultData(
                             milestone = milestoneId,
                             answers = answers,
                             user = userId
                         )
 
-                        // Make the API call to submit the result
+
                         submitResult(resultData)
 
-                        // Navigate to DevelopmentalMilestoneScreenThree after submission
+
                         val intent =
                             Intent(this, DevelopmentalMilestonesScreenFour::class.java)
                         startActivity(intent)
@@ -128,7 +125,7 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
         }
     }
 
-    // Check if all questions have been answered
+
     private fun allQuestionsAnswered(): Boolean {
         return viewModel.questions.value?.all { it.answer != null } == true
     }
@@ -138,7 +135,7 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
 
         viewModel.questions.value?.forEach { question ->
             question.answer?.let { answer ->
-                answersMap[question.questionJson] = answer.toString() // Assuming "question" is the question text
+                answersMap[question.questionJson] = answer.toString()
             }
         }
 
@@ -178,7 +175,6 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
         })
     }
 
-    // Update progress bar based on answered questions (if applicable)
     private fun updateProgressBar() {
         val totalQuestions = viewModel.questions.value?.size ?: 0
         val answeredQuestions = viewModel.questions.value?.count { it.answer != null } ?: 0
@@ -189,7 +185,7 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
 
     private fun getUserIdFromSharedPreferences(): Int {
         val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        return sharedPreferences.getInt("USER_ID", -1) // Default to -1 if not found
+        return sharedPreferences.getInt("USER_ID", -1)
     }
 
 }

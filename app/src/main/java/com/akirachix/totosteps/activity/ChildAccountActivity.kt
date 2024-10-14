@@ -10,13 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.akirachix.totosteps.activity.viewModel.ChildViewModel
 import com.akirachix.totosteps.activity.viewModel.CreationStatus
 import com.akirachix.totosteps.databinding.ActivityChildAccountBinding
+import com.akirachix.totosteps.models.MyApplication
+import com.akirachix.totosteps.models.UserSession
 import java.util.Calendar
 
 class ChildAccountActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChildAccountBinding
-
     private lateinit var viewModel: ChildViewModel
+    private val userSession: UserSession by lazy { (application as MyApplication).userSession }
     private var parent: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +38,10 @@ class ChildAccountActivity : AppCompatActivity() {
             return
         }
 
-        setupUI()                    // Show loading indicator if needed
-
+        setupUI()
         observeViewModel()
     }
+
 
     private fun setupUI() {
         binding.backArrow.setOnClickListener {
@@ -94,15 +96,15 @@ class ChildAccountActivity : AppCompatActivity() {
         viewModel.creationStatus.observe(this) { status ->
             when (status) {
                 is CreationStatus.Loading -> {
-
+                    // Show loading indicator if needed
                 }
                 is CreationStatus.Success -> {
                     Log.d("ChildAccountActivity", "Child profile created successfully")
                     Toast.makeText(this, "Child profile created successfully", Toast.LENGTH_SHORT).show()
                     val childId = viewModel.getCreatedChildId()
                     if (childId != null) {
-                        saveChildId(childId)
-                        navigateToHomeScreen(childId)
+                        userSession.currentChild = childId  // Save to UserSession
+                        navigateToHomeScreen()
                     } else {
                         Log.e("ChildAccountActivity", "Child ID not available after creation")
                         Toast.makeText(this, "Error: Child ID not available", Toast.LENGTH_SHORT).show()
@@ -119,17 +121,18 @@ class ChildAccountActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToHomeScreen(child_id: Int) {
+    private fun navigateToHomeScreen() {
         val intent = Intent(this, HomeScreenActivity::class.java)
-        intent.putExtra("child_id", child_id)
-        Log.d("ChildAccountActivity", "Navigating to HomeScreenActivity with child_id: $child_id")
+        Log.d("ChildAccountActivity", "Navigating to HomeScreenActivity")
         startActivity(intent)
         finish()
     }
 
+
+
     private fun navigateToLogin() {
         Log.d("ChildAccountActivity", "Navigating back to LoginActivity")
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, HomeScreenActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
