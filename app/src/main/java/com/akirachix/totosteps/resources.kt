@@ -1,6 +1,8 @@
 package com.akirachix.totosteps
 
 data class resources(
-    var avatar: String,
-    var age: String
+    val title: String,
+    val image: String,
+    val tips: List<String>,
+    val activities: List<String>
 )

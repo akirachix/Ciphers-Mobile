@@ -5,66 +5,88 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/whitetotologo" />
+        app:srcCompat="@drawable/anotherlogo" />
 
     <TextView
         android:id="@+id/textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Welcome"
+        android:layout_marginTop="@dimen/margin_large"
         android:fontFamily="@font/nunito_extrabold"
-        android:textSize="30sp"
+        android:text="Welcome"
         android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_xxlarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="263dp"
-        android:layout_height="194dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_medium"
         android:fontFamily="@font/nunito"
-        android:text="Don't miss a moment. Track your child's milestones, celebrate their achievements, and ensure their development is on track. "
+        android:textColor="@color/black"
+        android:text="Don't miss a moment. Track your child's milestones, celebrate their achievements, and ensure their development is on track."
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview1" />
-
-    <Button
-        android:id="@+id/btnGetStarted"
-        android:layout_width="194dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="56dp"
-        android:fontFamily="@font/nunito_bold"
-        android:text="Get Started"
-        android:textSize="20sp"
-        android:backgroundTint="#4C0033"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_medium"
         android:fontFamily="@font/nunito_semibold_italic"
         android:text="Start your journey with TotoSteps."
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_large"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btnGetStarted"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/margin_xlarge"-->
+<!--        android:fontFamily="@font/nunito_bold"-->
+<!--        android:text="Get Started"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="@dimen/text_size_large"-->
+<!--        android:backgroundTint="#4C0033"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/nunito_black"
+        android:padding="@dimen/padding_medium"
+        android:text="Get Started"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView3"
+        app:layout_constraintWidth_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

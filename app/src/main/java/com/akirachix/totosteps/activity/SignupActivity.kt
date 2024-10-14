@@ -63,15 +63,17 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 false
             }
+
             password != confirmPassword -> {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 false
             }
+
             else -> true
         }
     }
 
-    // Register user using the API
+
     private fun registerUser() {
         val firstName = etFirstName.text.toString().trim()
         val lastName = etLastName.text.toString().trim()
@@ -80,23 +82,35 @@ class SignupActivity : AppCompatActivity() {
 
         val user = UserRegistration(firstName, lastName, email, password)
 
-        // Use ApiClient to make the registration API call
-        ApiClient.instance.registerUser(user).enqueue(object : Callback<RegistrationResponse> {
-            override fun onResponse(call: Call<RegistrationResponse>, response: Response<RegistrationResponse>) {
+
+        ApiClient.instance().registerUser(user).enqueue(object : Callback<RegistrationResponse> {
+            override fun onResponse(
+                call: Call<RegistrationResponse>,
+                response: Response<RegistrationResponse>
+            ) {
                 if (response.isSuccessful) {
                     val registrationResponse = response.body()
-                    Toast.makeText(this@SignupActivity, registrationResponse?.message ?: "Registration successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SignupActivity,
+                        registrationResponse?.message ?: "Registration successful",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                    // Navigate to login screen after successful registration
+
                     startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
                     finish() // Optional: finish current activity to prevent going back to it
                 } else {
-                    Toast.makeText(this@SignupActivity, "Failed to register. Try again.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SignupActivity,
+                        "Failed to register. Try again.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(call: Call<RegistrationResponse>, t: Throwable) {
-                Toast.makeText(this@SignupActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SignupActivity, "Error: ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }

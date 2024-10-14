@@ -8,38 +8,69 @@
         android:id="@+id/QuestionContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView1"
+        <!-- This LinearLayout contains the question number and the question text in the same line -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito"
-            android:text="1. Does your baby calm down when picked up or spoken to?"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:gravity="start">
 
+            <!-- TextView for the number "1" -->
+            <TextView
+                android:id="@+id/questionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:text="1."
+                android:textColor="#000000"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginEnd="@dimen/margin_small" />
+
+            <!-- TextView for the question text -->
+            <TextView
+                android:id="@+id/sentence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:text="Does your baby calm down when picked up or spoken to?"
+                android:textColor="#000000"
+                android:textSize="@dimen/text_size_medium" />
+        </LinearLayout>
+
+        <!-- RadioGroup for the answer options -->
         <RadioGroup
             android:id="@+id/radioGroup1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small">
 
             <RadioButton
                 android:id="@+id/yesRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
-                android:text="Yes" />
+                android:textColor="@color/black"
+                android:text="Yes"
+                android:textSize="@dimen/text_size_medium" />
 
             <RadioButton
                 android:id="@+id/noRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
-                android:text="No" />
+                android:textColor="@color/black"
+                android:text="No"
+                android:textSize="@dimen/text_size_medium" />
         </RadioGroup>
     </LinearLayout>
 

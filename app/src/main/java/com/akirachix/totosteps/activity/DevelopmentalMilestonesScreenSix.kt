@@ -1,4 +1,5 @@
 package com.akirachix.totosteps.activity
+
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akirachix.totosteps.databinding.ActivityDevelopmentalMilestonesScreenSixBinding
-import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.QuestionsAdapter
 import com.akirachix.totosteps.activity.viewModel.DevelopmentalMilestoneViewModel
+import com.akirachix.totosteps.api.ApiClient
+import com.akirachix.totosteps.models.ResultData
+import com.akirachix.totosteps.models.ResultResponse
+import retrofit2.Call
 
 class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
     private lateinit var binding: ActivityDevelopmentalMilestonesScreenSixBinding
@@ -24,21 +28,27 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
         binding = ActivityDevelopmentalMilestonesScreenSixBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize ViewModel
+
         viewModel = ViewModelProvider(this).get(DevelopmentalMilestoneViewModel::class.java)
 
-        // Initialize Adapter with an empty list of questions
+
         adapter = QuestionsAdapter(emptyList())
 
-        // Setup RecyclerView
+
         binding.rvChildren.layoutManager = LinearLayoutManager(this)
         binding.rvChildren.adapter = adapter
 
-        // Observe ViewModel data
+
         observeViewModel()
 
-        // Fetch specific questions (example: category "Movement" and milestone 1)
         viewModel.fetchQuestions("Movement", 1)
+//        val milestoneId = intent.getIntExtra("MILESTONE_ID", -1)
+//        if (milestoneId != -1) {
+//            viewModel.fetchQuestions("Movement", milestoneId)
+//        } else {
+//            // Handle the error, milestoneId not found
+//            Toast.makeText(this, "Milestone ID not provided", Toast.LENGTH_SHORT).show()
+//        }
 
         setupUi()
     }
@@ -47,8 +57,7 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
         viewModel.questions.observe(this) { questions ->
             Log.d("DevelopmentalMilestonesScreenSix", "Received ${questions.size} questions")
 
-            // Update adapter with new questions
-            if (questions.isNotEmpty()) {
+                     if (questions.isNotEmpty()) {
                 adapter.questions = questions
                 adapter.notifyDataSetChanged()
                 updateProgressBar()
@@ -58,7 +67,6 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
-            // Show or hide progress bar based on loading state
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
@@ -70,27 +78,54 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
     }
 
     private fun setupUi() {
-        // Handle "Back" button click
-        binding.btnBackFour.setOnClickListener {
-            finish()
-        }
 
-        // Handle "Next" button click (Submit)
         binding.btnNextFour.setOnClickListener {
             if (allQuestionsAnswered()) {
-                showAssessmentResultsDialog()
+                val userId = getUserIdFromSharedPreferences()
+
+                if (userId != -1) {
+                    Log.d("DevelopmentalMilestonesScreenTwo", "User ID: $userId")
+
+                } else {
+                    Toast.makeText(this, "User ID not found", Toast.LENGTH_SHORT).show()
+                }
+                val answers = collectAnswers()
+
+                val milestoneId = 1
+
+
+                val resultData = ResultData(
+                    milestone = milestoneId,
+                    answers = answers,
+                    user = userId
+                )
+
+
+                submitResult(resultData)
             } else {
                 Toast.makeText(this, "Please answer all questions", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    // Check if all questions have been answered in the RecyclerView
     private fun allQuestionsAnswered(): Boolean {
         return viewModel.questions.value?.all { it.answer != null } == true
     }
 
-    // Update progress bar based on answered questions (if applicable)
+
+
+    private fun collectAnswers(): Map<String, String> {
+        val answersMap = mutableMapOf<String, String>()
+
+        viewModel.questions.value?.forEach { question ->
+            question.answer?.let { answer ->
+                answersMap[question.questionJson] = answer.toString()
+            }
+        }
+
+        return answersMap
+    }
+
     private fun updateProgressBar() {
         val totalQuestions = viewModel.questions.value?.size ?: 0
         val answeredQuestions = viewModel.questions.value?.count { it.answer != null } ?: 0
@@ -98,37 +133,72 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
         val progress = if (totalQuestions > 0) {
             (answeredQuestions.toFloat() / totalQuestions * 100).toInt()
         } else {
-            0 // Avoid division by zero if there are no questions.
+            0
         }
 
         binding.progressBar.progress = progress
     }
 
-    // Show dialog to inform user to check images for results and navigate to homepage on OK click
+    private fun submitResult(resultData: ResultData) {
+        val call = ApiClient.instance().submitResult(resultData)
+
+        call.enqueue(object : retrofit2.Callback<ResultResponse> {
+            override fun onResponse(
+                call: Call<ResultResponse>,
+                response: retrofit2.Response<ResultResponse>
+            ) {
+                if (response.isSuccessful) {
+                    showAssessmentResultsDialog()
+                } else {
+                    Toast.makeText(
+                        this@DevelopmentalMilestonesScreenSix,
+                        "Failed to submit result",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResultResponse>, t: Throwable) {
+                Toast.makeText(
+                    this@DevelopmentalMilestonesScreenSix,
+                    "Error: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
     private fun showAssessmentResultsDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Assessment Results")
-            .setMessage("Please check your images for assessment results.")
+            .setMessage("Please check your email for assessment results.")
             .setPositiveButton("OK") { dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
-                navigateToHomePage() // Navigate to homepage after dismissing the dialog.
+                navigateToHomePage()
             }
 
         val dialog = builder.create()
 
-        // Show the dialog with a dimmed background effect
-        dialog.window?.setDimAmount(0.5f) // Dim background to create a light-dark effect.
+        dialog.window?.setDimAmount(0.5f)
 
         dialog.show()
     }
 
-    // Navigate to the homepage activity
     private fun navigateToHomePage() {
-        val intent = Intent(this, HomeScreenActivity::class.java) // Replace with your actual homepage activity class.
+        val intent = Intent(
+            this,
+            HomeScreenActivity::class.java
+        )
         startActivity(intent)
-        finish() // Optionally finish this activity so it's removed from the back stack.
+        finish()
+    }
+
+    private fun getUserIdFromSharedPreferences(): Int {
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        return sharedPreferences.getInt("USER_ID", -1)
     }
 }
+
 
 
 
