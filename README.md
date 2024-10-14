@@ -9,7 +9,7 @@ Based on the result, the app sends a recommendation for further evaluation, if n
 #2. Child Development Questionnaire
 A questionnaire designed to assess key areas of child development: cognitive, social, language, and physical development.
 Each section includes multiple-choice questions (Yes/No) to track the child's progress.
-Questions are tailored to different age groups to provide relevant developmental insights.
+Questions are tailored to different age groups to provide relevant developmental insights
 #3. Developmental Milestones
 Track and monitor your child's developmental milestones over time.
 Milestones include cognitive, motor, and social skills development.
