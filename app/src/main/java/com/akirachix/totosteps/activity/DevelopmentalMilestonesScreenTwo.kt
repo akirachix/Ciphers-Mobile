@@ -1,6 +1,3 @@
-
-
-
 package com.akirachix.totosteps.activity
 
 import android.content.Intent
@@ -12,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akirachix.totosteps.databinding.ActivityDevelopmentalMilestonesScreenTwoBinding
-import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.QuestionsAdapter
 import com.akirachix.totosteps.activity.viewModel.DevelopmentalMilestoneViewModel
+import com.akirachix.totosteps.api.ApiClient
+import com.akirachix.totosteps.models.ResultData
+import com.akirachix.totosteps.models.ResultResponse
+import retrofit2.Call
 
 class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
     private lateinit var binding: ActivityDevelopmentalMilestonesScreenTwoBinding
@@ -26,21 +26,21 @@ class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
         binding = ActivityDevelopmentalMilestonesScreenTwoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize ViewModel
+
         viewModel = ViewModelProvider(this).get(DevelopmentalMilestoneViewModel::class.java)
 
-        // Initialize Adapter with an empty list
+
         adapter = QuestionsAdapter(emptyList())
 
-        // Setup RecyclerView
+
         binding.rvChildren.layoutManager = LinearLayoutManager(this)
         binding.rvChildren.adapter = adapter
 
-        // Observe ViewModel data
+
         observeViewModel()
 
-        // Fetch specific question by ID (e.g., question_id = 19)
-        viewModel.fetchQuestions("Social",1)
+
+        viewModel.fetchQuestions("Social", 1)
 
 
         setupUi()
@@ -50,7 +50,7 @@ class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
         viewModel.questions.observe(this) { questions ->
             Log.d("DevelopmentalMilestonesScreenTwo", "Received ${questions.size} questions")
 
-            // Update adapter with new questions
+
             if (questions.isNotEmpty()) {
                 adapter.questions = questions
                 adapter.notifyDataSetChanged()
@@ -72,24 +72,106 @@ class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
     }
 
     private fun setupUi() {
-        // Handle "Back" button click
         binding.btnBackFour.setOnClickListener {
             finish()
         }
 
-        // Handle "Next" button click
+
         binding.btnNextFour.setOnClickListener {
             if (allQuestionsAnswered()) {
-                val intent = Intent(this, DevelopmentalMilestonesScreenThree::class.java)
-                startActivity(intent)
+                val userId = getUserIdFromSharedPreferences()
+
+                if (userId != -1) {
+                    Log.d("DevelopmentalMilestonesScreenTwo", "User ID: $userId")
+
+
+                    val answers = collectAnswers()
+
+
+                    val milestoneId = 1
+                    if (milestoneId != -1) {
+                        // Prepare the result data
+                        val resultData = ResultData(
+                            milestone = milestoneId,
+                            answers = answers,
+                            user = userId
+                        )
+
+
+                        submitResult(resultData)
+
+
+                        val intent =
+                            Intent(this, DevelopmentalMilestonesScreenThree::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, "Milestone ID not provided", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                } else {
+                    Toast.makeText(this, "User ID not found", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Please answer all questions", Toast.LENGTH_SHORT).show()
             }
+
+
         }
     }
 
-    // Check if all questions have been answered
     private fun allQuestionsAnswered(): Boolean {
         return viewModel.questions.value?.all { it.answer != null } == true
     }
+
+    private fun collectAnswers(): Map<String, String> {
+        val answersMap = mutableMapOf<String, String>()
+
+        viewModel.questions.value?.forEach { question ->
+            question.answer?.let { answer ->
+                answersMap[question.questionJson] =
+                    answer.toString()
+            }
+        }
+
+        return answersMap
+    }
+
+    private fun submitResult(resultData: ResultData) {
+        val call = ApiClient.instance().submitResult(resultData)
+
+        call.enqueue(object : retrofit2.Callback<ResultResponse> {
+            override fun onResponse(
+                call: Call<ResultResponse>,
+                response: retrofit2.Response<ResultResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Toast.makeText(
+                        this@DevelopmentalMilestonesScreenTwo,
+                        "Good job! Continue",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this@DevelopmentalMilestonesScreenTwo,
+                        "Failed to submit result",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResultResponse>, t: Throwable) {
+                Toast.makeText(
+                    this@DevelopmentalMilestonesScreenTwo,
+                    "Error: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
+    private fun getUserIdFromSharedPreferences(): Int {
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        return sharedPreferences.getInt("USER_ID", -1)
+    }
+
 }

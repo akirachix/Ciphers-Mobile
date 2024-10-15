@@ -26,7 +26,7 @@ class ParentsAgreementActivity : AppCompatActivity() {
         btnNext.isEnabled = false
 
         btnBack.setOnClickListener {
-            onBackPressed() // Navigate back
+            onBackPressed()
         }
 
         checkBoxAgree.setOnCheckedChangeListener { _, isChecked ->
@@ -50,7 +50,7 @@ class ParentsAgreementActivity : AppCompatActivity() {
         btnNext.setOnClickListener {
             if (checkBoxAgree.isChecked) {
                 Toast.makeText(this, "Proceeding to the next step.", Toast.LENGTH_SHORT).show()
-                 val intent = Intent(this, AutismUploadPhoto::class.java)
+                 val intent = Intent(this, SelectChildActivity::class.java)
                  startActivity(intent)
             } else if (checkBoxDisagree.isChecked) {
                 Toast.makeText(this, "You need to agree to proceed.", Toast.LENGTH_SHORT).show()

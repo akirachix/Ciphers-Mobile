@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/white"
+    android:padding="@dimen/padding_medium">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:fontFamily="@font/nunito_black"
         android:text="DEVELOPMENTAL MILESTONE QUESTIONS"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +25,8 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="7dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="@dimen/progress_bar_height"
+        android:layout_marginTop="@dimen/margin_medium"
         android:progress="25"
         android:progressTint="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,22 +37,23 @@
         android:id="@+id/tvSubtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_medium"
         android:fontFamily="@font/nunito_bold"
         android:text="COGNITIVE MILESTONES"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_medium"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChildren"
-        android:layout_width="385dp"
-        android:layout_height="461dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_medium"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackFour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
@@ -60,31 +61,31 @@
 
     <Button
         android:id="@+id/btnBackFour"
-        android:layout_width="130dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_small"
         android:background="@drawable/skip_button_background"
         android:fontFamily="@font/nunito_bold"
         android:text="Back"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnNextFour"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvChildren" />
+        app:layout_constraintWidth_percent="0.45" />
 
     <Button
         android:id="@+id/btnNextFour"
-        android:layout_width="134dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="36dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/orange"
         android:text="Next"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintBottom_toBottomOf="@+id/btnBackFour"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnBackFour"
         app:layout_constraintTop_toTopOf="@+id/btnBackFour"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintWidth_percent="0.45" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

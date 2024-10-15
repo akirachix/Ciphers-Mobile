@@ -1,104 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.ParentsAgreementActivity">
 
     <View
         android:id="@+id/purpleBackground"
-        android:layout_width="419dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/header_height"
         android:background="@color/purple"
-        app:layout_constraintBottom_toBottomOf="@id/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:padding="16dp"
-        android:text="Autism Checker"
         android:fontFamily="@font/nunito_black"
+        android:padding="@dimen/padding_medium"
+        android:text="Autism Checker"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_size_large"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/purpleBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/backArrow"
-        android:layout_width="71dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp"
-        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
         android:src="@drawable/backarrow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/purpleBackground" />
 
-
-    <!-- Instruction Text -->
     <TextView
         android:id="@+id/instructionText"
-        android:layout_width="398dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginHorizontal="@dimen/margin_medium"
         android:fontFamily="@font/nunito"
-        android:text="To start the autism screening, please agree to upload a clear, front-facing photo your child with their eyes open. This image will only be used for autism detection analysis in relation to Data Protection Act."
+        android:text="To start the autism screening, please agree to upload a clear, front-facing photo of your child with their eyes open. This image will only be used for autism detection analysis in relation to Data Protection Act."
         android:textColor="@android:color/black"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/backArrow" />
 
-    <!-- Agreement Question Text -->
-
-    <!-- CheckBox 1: Agreement -->
     <TextView
         android:id="@+id/questionText"
-        android:layout_width="381dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginHorizontal="@dimen/margin_medium"
         android:fontFamily="@font/nunito"
         android:text="Do you agree to the use of your child's picture for this process?"
         android:textColor="@android:color/black"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/instructionText" />
 
-    <!-- CheckBox 2: Disagree -->
     <CheckBox
         android:id="@+id/checkBoxAgree"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginHorizontal="@dimen/margin_medium"
         android:fontFamily="@font/nunito"
-        android:textSize="20dp"
         android:text="Yes, I have understood and agree."
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/questionText" />
 
-    <!-- Next Button -->
     <CheckBox
         android:id="@+id/checkBoxDisagree"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="I disagree."
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginHorizontal="@dimen/margin_medium"
         android:fontFamily="@font/nunito"
-        android:textSize="20dp"
+        android:text="I disagree."
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checkBoxAgree" />
 
@@ -106,14 +102,14 @@
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:textSize="20dp"
-        android:fontFamily="@font/nunito_black"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="@dimen/margin_large"
         android:backgroundTint="@color/purple"
-        app:layout_constraintTop_toBottomOf="@id/checkBoxDisagree"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/nunito_black"
+        android:text="Next"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkBoxDisagree" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

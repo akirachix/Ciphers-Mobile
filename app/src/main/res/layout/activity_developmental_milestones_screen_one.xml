@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/white"
+    android:padding="@dimen/padding_medium">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="@dimen/margin_xlarge"
         android:fontFamily="@font/nunito_black"
         android:text="DEVELOPMENTAL MILESTONE QUESTIONS"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_size_xlarge"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,13 +24,12 @@
         android:id="@+id/tvDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:fontFamily="@font/nunito"
-        android:text="These questions are divided into four categories which includes:"
+        android:text="These questions are divided into four categories which include:"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -38,13 +37,12 @@
         android:id="@+id/tvCategories"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:fontFamily="@font/nunito_bold"
         android:text="1. Social Milestones\n2. Language Milestones\n3. Cognitive Milestones\n4. Movement Milestones"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
@@ -52,28 +50,31 @@
         android:id="@+id/tvInstructions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:fontFamily="@font/nunito_black"
         android:text="Carefully, answer these questions as this will help in understanding your child's development milestone and provide resources to support your child's growth."
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCategories" />
 
     <Button
         android:id="@+id/btnGetStarted"
-        android:layout_width="189dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
         android:backgroundTint="@color/orange"
         android:fontFamily="@font/nunito_black"
         android:text="Get Started"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_large"
+        android:paddingVertical="@dimen/padding_medium"
+        app:layout_constraintWidth_percent="0.6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvInstructions" />
+        app:layout_constraintTop_toBottomOf="@id/tvInstructions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

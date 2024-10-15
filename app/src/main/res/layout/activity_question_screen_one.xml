@@ -1,144 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/anotherlogo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/white"
+        android:padding="@dimen/padding_medium">
 
-    <TextView
-        android:id="@+id/headerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/nunito_black"
-        android:text="Please answer the following questions"
-        android:textColor="@color/orange"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImageView" />
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/anotherlogo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.6" />
 
-    <TextView
-        android:id="@+id/question1TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/nunito_black"
-        android:text="1. Curious about your child's development?"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerTextView" />
+        <TextView
+            android:id="@+id/headerTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:fontFamily="@font/nunito_black"
+            android:text="Please answer the following questions"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logoImageView" />
 
-    <RadioGroup
-        android:id="@+id/question1RadioGroup"
-        android:layout_width="152dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question1TextView">
+        <TextView
+            android:id="@+id/question1TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:fontFamily="@font/nunito_black"
+            android:text="1. Curious about your child's development?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headerTextView" />
 
-        <RadioButton
-            android:id="@+id/question1YesRadio"
+        <RadioGroup
+            android:id="@+id/question1RadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yes"
-            android:textSize="20sp" />
+            android:layout_marginTop="@dimen/margin_small"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question1TextView">
 
-        <RadioButton
-            android:id="@+id/question1NoRadio"
+            <RadioButton
+                android:id="@+id/question1YesRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_small" />
+
+            <RadioButton
+                android:id="@+id/question1NoRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:text="No"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_small" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question2TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:fontFamily="@font/nunito_black"
+            android:text="2. How old is your child?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question1RadioGroup" />
+
+        <Spinner
+            android:id="@+id/ageSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:autofillHints="Choose the age range of the child"
+            android:background="@drawable/input_stroke"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question2TextView" />
+
+        <TextView
+            android:id="@+id/question3TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:fontFamily="@font/nunito_black"
+            android:text="3. Are you concerned about your child's development?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ageSpinner" />
+
+        <RadioGroup
+            android:id="@+id/question3RadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="No"
-            android:textSize="20sp" />
-    </RadioGroup>
+            android:layout_marginTop="@dimen/margin_small"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question3TextView">
 
-    <TextView
-        android:id="@+id/question2TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/nunito_black"
-        android:text="2. How old is your child?"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question1RadioGroup" />
+            <RadioButton
+                android:id="@+id/question3YesRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_small" />
 
-    <Spinner
-        android:id="@+id/ageSpinner"
-        android:layout_width="343dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:autofillHints="Choose the age range of the child"
-        android:background="@drawable/input_stroke"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question2TextView" />
+            <RadioButton
+                android:id="@+id/question3NoRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:text="No"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_small" />
+        </RadioGroup>
 
-    <TextView
-        android:id="@+id/question3TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nunito_black"
-        android:text="3. Are you concerned about your child's development?"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ageSpinner" />
-
-    <RadioGroup
-        android:id="@+id/question3RadioGroup"
-        android:layout_width="151dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question3TextView">
-
-        <RadioButton
-            android:id="@+id/question3YesRadio"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/continueButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Yes"
-            android:textSize="20sp" />
+            android:layout_marginTop="@dimen/margin_large"
+            android:backgroundTint="@color/purple"
+            android:fontFamily="@font/nunito_black"
+            android:padding="@dimen/padding_medium"
+            android:text="Continue"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question3RadioGroup"
+            app:layout_constraintWidth_percent="0.5" />
 
-        <RadioButton
-            android:id="@+id/question3NoRadio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="No"
-            android:textSize="20sp" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/continueButton"
-        android:layout_width="146dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/purple"
-        android:fontFamily="@font/nunito_black"
-        android:text="Continue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question3RadioGroup" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

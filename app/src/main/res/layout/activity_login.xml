@@ -5,27 +5,24 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.LoginActivity">
-
-
-
 
     <ImageView
         android:id="@+id/tvLogo"
-        android:layout_width="325dp"
-        android:layout_height="163dp"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_medium"
         android:src="@drawable/anotherlogo"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        app:layout_constraintDimensionRatio="2:1"
+        app:layout_constraintWidth_percent="0.8"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="417dp"
-        android:layout_height="606dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,25 +32,25 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/margin_medium"
             android:background="@color/purple"
             app:cardBackgroundColor="@color/purple"
-            app:cardCornerRadius="30dp">
+            app:cardCornerRadius="@dimen/card_corner_radius">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="545dp"
-                android:padding="16dp">
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_large">
 
                 <TextView
                     android:id="@+id/tvCreateAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="@dimen/margin_medium"
                     android:fontFamily="@font/nunito_black"
                     android:text="Login"
                     android:textColor="@color/white"
-                    android:textSize="34dp"
+                    android:textSize="@dimen/text_size_xlarge"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,15 +59,17 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilEmail"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="347dp"
-                    android:layout_height="63dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:hint="Email"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxBackgroundColor="@color/white"
-                    app:boxCornerRadiusBottomEnd="20dp"
-                    app:boxCornerRadiusBottomStart="20dp"
-                    app:boxCornerRadiusTopEnd="20dp"
-                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                    app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount">
@@ -78,8 +77,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_black"
+                        android:textColor="@color/black"
                         android:importantForAccessibility="yes"
                         android:inputType="textEmailAddress" />
 
@@ -88,15 +88,17 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilPassword"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="352dp"
-                    android:layout_height="64dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:hint="Password"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxBackgroundColor="@color/white"
-                    app:boxCornerRadiusBottomEnd="20dp"
-                    app:boxCornerRadiusBottomStart="20dp"
-                    app:boxCornerRadiusTopEnd="20dp"
-                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                    app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
                     app:endIconMode="password_toggle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -105,36 +107,36 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/nunito_black"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <Button
                     android:id="@+id/btnSignUp"
-                    android:layout_width="137dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:backgroundTint="#F58220"
                     android:text="Login"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_large"
+                    app:layout_constraintWidth_percent="0.5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.382"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
 
                 <TextView
                     android:id="@+id/tvLogin"
-                    android:layout_width="323dp"
-                    android:layout_height="34dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:fontFamily="@font/nunito_black"
                     android:text="Don't have an account? SignUp"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/text_size_medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
@@ -146,4 +148,3 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
