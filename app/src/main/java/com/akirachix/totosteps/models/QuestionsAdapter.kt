@@ -24,29 +24,29 @@ class QuestionsAdapter(var questions: List<Question>):RecyclerView.Adapter<Quest
 class QuestionsViewHolder(var binding: QuestionsListViewBinding): RecyclerView.ViewHolder(binding.root){
 
     fun bind(question: Question, position: Int) {
-        // Set the question text and number
+
         binding.sentence.text = question.questionJson
-        binding.tvQuestionNumber.text = "${position + 1}"
+        binding.questionNumber.text = "${position + 1}"
 
-        // Reset RadioGroup listener to avoid triggering on bind
-        binding.radioGroup2.setOnCheckedChangeListener(null)
 
-        // Clear previous selection
-        binding.radioGroup2.clearCheck()
+        binding.radioGroup1.setOnCheckedChangeListener(null)
 
-        // Pre-select radio button based on the answer (true/false/null)
+
+        binding.radioGroup1.clearCheck()
+
+
         when (question.answer) {
-            true -> binding.radioGroup2.check(binding.radioGroup2.getChildAt(0).id) // First button for "Yes"
-            false -> binding.radioGroup2.check(binding.radioGroup2.getChildAt(1).id) // Second button for "No"
-            null -> binding.radioGroup2.clearCheck() // No answer selected
+            true -> binding.radioGroup1.check(binding.radioGroup1.getChildAt(0).id)
+            false -> binding.radioGroup1.check(binding.radioGroup1.getChildAt(1).id)
+            null -> binding.radioGroup1.clearCheck()
         }
 
-        // Set the listener for radio button selection changes
-        binding.radioGroup2.setOnCheckedChangeListener { _, checkedId ->
+
+        binding.radioGroup1.setOnCheckedChangeListener { _, checkedId ->
             question.answer = when (checkedId) {
-                binding.radioGroup2.getChildAt(0).id -> true  // "Yes" selected
-                binding.radioGroup2.getChildAt(1).id -> false // "No" selected
-                else -> null // No selection
+                binding.radioGroup1.getChildAt(0).id -> true  // "Yes" selected
+                binding.radioGroup1.getChildAt(1).id -> false // "No" selected
+                else -> null
             }
         }
     }

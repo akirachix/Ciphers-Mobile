@@ -55,6 +55,7 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.kotlinx.coroutines.core.v171)
     implementation (libs.kotlinx.coroutines.android.v171)
+    implementation(libs.androidx.activity)
     testImplementation (libs.junit)
     androidTestImplementation (libs.androidx.junit.v115)
     androidTestImplementation (libs.androidx.espresso.core.v351)
@@ -71,4 +72,6 @@ dependencies {
     implementation (libs.androidx.fragment.ktx )
     implementation (libs.material.v150)
     implementation(libs.picasso)
+    implementation (libs.threetenabp)
+    implementation (libs.androidx.cardview)
 }

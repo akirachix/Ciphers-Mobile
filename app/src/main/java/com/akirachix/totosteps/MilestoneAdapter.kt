@@ -10,7 +10,7 @@ import com.akirachix.totosteps.models.Milestone
 
 class MilestoneAdapter(
     private val milestones: List<Milestone>,
-    private val onClick: (Milestone) -> Unit // This will be called when an item is clicked
+    private val onClick: (Milestone) -> Unit
 ) : RecyclerView.Adapter<MilestoneAdapter.MilestoneViewHolder>() {
 
     inner class MilestoneViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,7 +23,7 @@ class MilestoneAdapter(
             ageTextView.text = "Age: ${milestone.age}"
             categoryTextView.text = "Category: ${milestone.category}"
 
-            // Set the click listener with logging
+
             itemView.setOnClickListener {
                 Log.d("MilestoneAdapter", "Clicked: ${milestone.name}")
                 onClick(milestone)

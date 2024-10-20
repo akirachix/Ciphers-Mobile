@@ -1,6 +1,7 @@
 package com.akirachix.totosteps.api
 
-import com.akirachix.totosteps.models.Answer
+import com.akirachix.totosteps.models.AutismResultResponse
+import com.akirachix.totosteps.models.ImageUpload
 import com.akirachix.totosteps.models.ChildData
 import com.akirachix.totosteps.models.ChildResponse
 import com.akirachix.totosteps.models.LoginRequest
@@ -9,15 +10,20 @@ import com.akirachix.totosteps.models.Milestone
 import com.akirachix.totosteps.models.ParentResponse
 import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.RegistrationResponse
+import com.akirachix.totosteps.models.ResultData
+import com.akirachix.totosteps.models.ResultResponse
 import com.akirachix.totosteps.models.UserRegistration
 import com.akirachix.totosteps.resources
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiInterface {
 
@@ -44,17 +50,17 @@ interface ApiInterface {
 
     @POST("/api/result/")
     fun submitResult(@Body result: ResultData): Call<ResultResponse>
+
+    @Multipart
+    @POST("/api/upload/")
+    suspend fun uploadPhoto(
+        @Part image: MultipartBody.Part,
+        @Part("child") child: RequestBody
+    ): Response<AutismResultResponse>
 }
 
-data class ResultData(
-    val milestone: Int,
-    val answers: Map<String, String>,
-    val user: Int
-)
 
-data class ResultResponse(
-    val success: Boolean,
-    val message: String
-)
+
+
 
 

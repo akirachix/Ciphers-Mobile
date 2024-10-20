@@ -11,7 +11,7 @@ class TeaserOne : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = OneTeaserBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnGetStarted.setOnClickListener {
+        binding.continueButton.setOnClickListener {
             val intent = Intent(this, TeaserTwoActivity::class.java)
             startActivity(intent)
         }

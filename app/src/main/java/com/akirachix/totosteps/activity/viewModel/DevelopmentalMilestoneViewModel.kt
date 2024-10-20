@@ -23,18 +23,15 @@ class DevelopmentalMilestoneViewModel : ViewModel() {
         ApiClient.instance()
     }
 
-    // Fetch questions and filter by milestone
     fun fetchQuestions(category: String, milestone: Int) {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                // Fetch all questions for the given category
+
                 val response = apiService.getQuestions(category)
 
-                // Filter questions by the specified milestone
                 val filteredQuestions = response.filter { it.milestone == milestone }
 
-                // Simplify the filtered questions
                 val simplifiedQuestions = filteredQuestions.map {
                     Question(
                         id = it.id,
@@ -45,11 +42,9 @@ class DevelopmentalMilestoneViewModel : ViewModel() {
                     )
                 }
 
-                // Post the filtered and simplified list to LiveData
                 _questions.postValue(simplifiedQuestions)
                 _isLoading.postValue(false)
             } catch (e: Exception) {
-                // Handle error and update LiveData
                 _error.postValue("Error fetching questions: ${e.message}")
                 _isLoading.postValue(false)
             }
