@@ -10,9 +10,8 @@ import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
-import com.akirachix.totosteps.activity.DevelopmentalMilestonesScreenOne
 import com.akirachix.totosteps.activity.ParentsAgreementActivity
-
+import com.akirachix.totosteps.activity.SelectChildQuestionnaire
 
 
 class AssessFragment : Fragment() {
@@ -59,7 +58,7 @@ class AssessFragment : Fragment() {
     }
 
     private fun navigateToQuestionnaire() {
-        val intent = Intent(requireContext(), DevelopmentalMilestonesScreenOne::class.java)
+        val intent = Intent(requireContext(), SelectChildQuestionnaire::class.java)
         startActivity(intent)
     }
 }

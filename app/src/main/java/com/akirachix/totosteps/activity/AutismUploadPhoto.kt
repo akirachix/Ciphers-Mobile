@@ -36,6 +36,10 @@ class AutismUploadPhoto : AppCompatActivity() {
         binding = ActivityAutismUploadPhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.ivBack.setOnClickListener {
+            startActivity(Intent(this, SelectChildActivity::class.java))
+        }
+
         childId = intent.getIntExtra("CHILD_ID", -1)
 
         if (childId == -1) {

@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
             result.onSuccess { loginResponse ->
                 Log.d("LoginActivity", "Login successful. User: ${loginResponse.user.first_name}")
                 persistLogin(loginResponse)
+                val userId = loginResponse.user.user_id
+                val email = loginResponse.user.email
+                Log.d("LoginActivity", "Login successful. User ID: $userId")
+                saveUserIdToSharedPreferences(userId)
+                saveEmailToSharedPreferences(email)
+
                 showToast("Login successful")
                 navigateToChildAccount()
             }.onFailure { throwable ->
@@ -75,12 +81,25 @@ class LoginActivity : AppCompatActivity() {
         Log.d("LoginActivity", "Login information persisted")
     }
 
+    private fun saveUserIdToSharedPreferences(userId: Int) {
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        sharedPreferences.edit().putInt("USER_ID", userId).apply()
+        Log.d("LoginActivity", "User ID saved to SharedPreferences: $userId")
+    }
+    private fun saveEmailToSharedPreferences(email: String){
+        val sharePref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        sharePref.edit().putString("USER_EMAIL", email)
+        Log.d("LoginActivity", "User email saved to SharedPreferences: $email")
+
+    }
+
     private fun navigateToChildAccount() {
         Log.d("LoginActivity", "Navigating to ChildAccountActivity")
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
+
 
     private fun navigateToSignUp() {
         startActivity(Intent(this, SignupActivity::class.java))

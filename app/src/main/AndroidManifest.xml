@@ -19,6 +19,7 @@
         android:name=".models.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -26,6 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31">
+        <activity
+            android:name=".DevelopmentalMilestoneScreens"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SelectChildQuestionnaire"
+            android:exported="false" />
         <activity
             android:name=".activity.SelectChildActivity"
             android:exported="false" />
@@ -130,4 +137,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>
