@@ -35,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
                 val email = loginResponse.user.email
                 Log.d("LoginActivity", "Login successful. User ID: $userId")
                 saveUserIdToSharedPreferences(userId)
-                saveEmailToSharedPreferences(email)
 
                 showToast("Login successful")
                 navigateToChildAccount()
@@ -86,12 +85,7 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences.edit().putInt("USER_ID", userId).apply()
         Log.d("LoginActivity", "User ID saved to SharedPreferences: $userId")
     }
-    private fun saveEmailToSharedPreferences(email: String){
-        val sharePref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        sharePref.edit().putString("USER_EMAIL", email)
-        Log.d("LoginActivity", "User email saved to SharedPreferences: $email")
 
-    }
 
     private fun navigateToChildAccount() {
         Log.d("LoginActivity", "Navigating to ChildAccountActivity")

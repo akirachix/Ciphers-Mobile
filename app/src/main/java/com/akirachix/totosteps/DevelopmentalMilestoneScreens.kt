@@ -23,7 +23,6 @@ open class BaseMilestoneScreen : AppCompatActivity() {
     lateinit var adapter: QuestionsAdapter
     var childAgeInMonths: Int = -1
     var childId: Int = -1
-    private lateinit var userEmail: String
 
 
     open val category: String = ""
@@ -122,8 +121,7 @@ open class BaseMilestoneScreen : AppCompatActivity() {
         val resultData = ResultData(
             milestone = milestone,
             answers = collectAnswers(),
-            user = childId,
-            email = userEmail
+            user = childId
         )
 
         submitResult(resultData) { success ->
@@ -174,8 +172,7 @@ open class BaseMilestoneScreen : AppCompatActivity() {
         val resultData = ResultData(
             milestone = milestone,
             answers = collectAnswers(),
-            user = childId,
-            email = userEmail
+            user = childId
         )
 
         submitResult(resultData) { success ->

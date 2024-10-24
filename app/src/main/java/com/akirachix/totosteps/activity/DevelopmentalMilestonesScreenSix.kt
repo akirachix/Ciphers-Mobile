@@ -215,13 +215,11 @@ import retrofit2.Response
 
 class DevelopmentalMilestonesScreenSix : BaseMilestoneScreen() {
     override val category: String = "Movement"
-    private lateinit var userEmail: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupUi()
-        getUserEmail()
     }
 
     private fun setupUi() {
@@ -255,8 +253,7 @@ class DevelopmentalMilestonesScreenSix : BaseMilestoneScreen() {
         val resultData = ResultData(
             milestone = milestone,
             answers = collectAnswers(),
-            user = childId,
-            email = userEmail
+            user = childId
         )
 
         ApiClient.instance().submitResult(resultData).enqueue(object : Callback<ResultResponse> {
@@ -278,14 +275,7 @@ class DevelopmentalMilestonesScreenSix : BaseMilestoneScreen() {
             }
         })
     }
-    private fun getUserEmail() {
-        val sharedPreferences = getSharedPreferences("UserPrefs", AppCompatActivity.MODE_PRIVATE)
-        userEmail = sharedPreferences.getString("USER_EMAIL", "") ?: ""
-        if (userEmail.isEmpty()) {
-            Log.e("MilestoneScreen", "User email not found")
-            Toast.makeText(this, "User email not found. Please log in again.", Toast.LENGTH_LONG).show()
-        }
-    }
+
 
 
     private fun showCompletionDialog(resultResponse: ResultResponse) {
