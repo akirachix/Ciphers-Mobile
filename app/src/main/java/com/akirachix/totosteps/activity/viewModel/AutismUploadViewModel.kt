@@ -24,6 +24,7 @@ class AutismUploadPhotoViewModel(application: Application, private val childId: 
 
     fun uploadPhoto(uri: Uri, childId: Int) {
         viewModelScope.launch {
+
             try {
                 val response = photoRepo.uploadPhoto(uri, childId)
                 if (response.isSuccessful) {
@@ -50,10 +51,10 @@ class AutismUploadPhotoViewModel(application: Application, private val childId: 
 
     fun interpretResult(result: String): String {
         return when (result.toLowerCase()) {
-            "low autism risk" -> "Dear parent, your child is showing minimal risk of autism. Kindly seek medical attention from the nearest healthcare provider."
+            "low autism risk" -> "Dear parent, based on the image analysis, your child does not show signs of autism. However, if you have concerns, please consult with a healthcare professional."
             "highly autistic" -> "Dear parent, your child is showing symptoms of autism. Kindly visit the nearest healthcare provider for more analysis and information."
-            "non-autistic" -> "Dear parent, based on the image analysis, your child does not show signs of autism. However, if you have concerns, please consult with a healthcare professional."
-            "no face detected" -> "Dear parent, kindly upload a front-facing image of your child."
+            "non autistic" -> "Dear parent, based on the image analysis, your child does not show signs of autism. However, if you have concerns, please consult with a healthcare professional."
+            "moderate autism risk" ->"Dear parent, your child is showing minimal risk of autism. Kindly seek medical attention from the nearest healthcare provider."
             else -> "An error occurred while processing the image. Please try again."
         }
     }

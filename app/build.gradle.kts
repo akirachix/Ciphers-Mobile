@@ -74,4 +74,6 @@ dependencies {
     implementation(libs.picasso)
     implementation (libs.threetenabp)
     implementation (libs.androidx.cardview)
+    implementation ("com.google.mlkit:face-detection:16.1.5")
+
 }

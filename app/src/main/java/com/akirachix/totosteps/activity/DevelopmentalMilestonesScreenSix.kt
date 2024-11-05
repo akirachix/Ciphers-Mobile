@@ -41,7 +41,7 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
 
         observeViewModel()
 
-        viewModel.fetchQuestions("Movement", 1)
+        viewModel.fetchQuestions("Movement", 3)
 //        val milestoneId = intent.getIntExtra("MILESTONE_ID", -1)
 //        if (milestoneId != -1) {
 //            viewModel.fetchQuestions("Movement", milestoneId)
@@ -91,7 +91,7 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
                 }
                 val answers = collectAnswers()
 
-                val milestoneId = 1
+                val milestoneId = 3
 
 
                 val resultData = ResultData(

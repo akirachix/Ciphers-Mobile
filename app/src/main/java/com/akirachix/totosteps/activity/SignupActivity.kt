@@ -2,6 +2,7 @@ package com.akirachix.totosteps.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.akirachix.totosteps.R
@@ -52,25 +53,68 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun validateInputs(): Boolean {
+        var isValid = true
+
+        // Get input values
         val firstName = etFirstName.text.toString().trim()
         val lastName = etLastName.text.toString().trim()
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString()
         val confirmPassword = etConfirmPassword.text.toString()
 
-        return when {
-            firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() -> {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
-                false
-            }
+        // Clear all previous errors
+        binding.tilFirstName.error = null
+        binding.tilLastName.error = null
+        binding.tilEmail.error = null
+        binding.tilPassword.error = null
+        binding.tilConfirmPassword.error = null
 
-            password != confirmPassword -> {
-                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
-                false
-            }
-
-            else -> true
+        // Validate First Name
+        if (firstName.isEmpty()) {
+            binding.tilFirstName.error = "First name is required"
+            isValid = false
         }
+
+        // Validate Last Name
+        if (lastName.isEmpty()) {
+            binding.tilLastName.error = "Last name is required"
+            isValid = false
+        }
+
+        // Validate Email
+        if (email.isEmpty()) {
+            binding.tilEmail.error = "Email is required"
+            isValid = false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.tilEmail.error = "Please enter a valid email address"
+            isValid = false
+        }
+
+        // Validate Password
+        when {
+            password.isEmpty() -> {
+                binding.tilPassword.error = "Password is required"
+                isValid = false
+            }
+            password.length < 6 -> {
+                binding.tilPassword.error = "Password must be at least 6 characters"
+                isValid = false
+            }
+        }
+
+        // Validate Confirm Password
+        when {
+            confirmPassword.isEmpty() -> {
+                binding.tilConfirmPassword.error = "Please confirm your password"
+                isValid = false
+            }
+            confirmPassword != password -> {
+                binding.tilConfirmPassword.error = "Passwords do not match"
+                isValid = false
+            }
+        }
+
+        return isValid
     }
 
 

@@ -17,6 +17,7 @@ import com.akirachix.totosteps.models.ResultResponse
 import retrofit2.Call
 
 class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
+
     private lateinit var binding: ActivityDevelopmentalMilestonesScreenTwoBinding
     private lateinit var viewModel: DevelopmentalMilestoneViewModel
     private lateinit var adapter: QuestionsAdapter
@@ -30,7 +31,9 @@ class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(DevelopmentalMilestoneViewModel::class.java)
 
 
+
         adapter = QuestionsAdapter(emptyList())
+
 
 
         binding.rvChildren.layoutManager = LinearLayoutManager(this)
@@ -40,11 +43,12 @@ class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
         observeViewModel()
 
 
-        viewModel.fetchQuestions("Social", 1)
+        viewModel.fetchQuestions("Social", 3)
 
 
         setupUi()
     }
+
 
     private fun observeViewModel() {
         viewModel.questions.observe(this) { questions ->
@@ -88,7 +92,7 @@ class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
                     val answers = collectAnswers()
 
 
-                    val milestoneId = 1
+                    val milestoneId = 3
                     if (milestoneId != -1) {
                         // Prepare the result data
                         val resultData = ResultData(
@@ -167,6 +171,8 @@ class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
                 ).show()
             }
         })
+
+
     }
 
     private fun getUserIdFromSharedPreferences(): Int {

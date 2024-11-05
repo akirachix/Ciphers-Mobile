@@ -16,6 +16,7 @@ import com.akirachix.totosteps.models.UserRegistration
 import com.akirachix.totosteps.resources
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -57,8 +58,22 @@ interface ApiInterface {
         @Part image: MultipartBody.Part,
         @Part("child") child: RequestBody
     ): Response<AutismResultResponse>
+
+
+    @POST("api/reset-password")
+    suspend fun resetPassword(@Body request: ResetPasswordRequest): Response<ResponseBody>
+
 }
 
+data class ResetPasswordRequest(
+    val email: String,
+    val password: String
+)
+
+data class ResetPasswordResponse(
+    val message: String,
+    val success: Boolean
+)
 
 
 

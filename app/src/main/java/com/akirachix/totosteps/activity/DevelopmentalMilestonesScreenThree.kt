@@ -40,7 +40,7 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
         observeViewModel()
 
 
-        viewModel.fetchQuestions("Language", 1)
+        viewModel.fetchQuestions("Language", 3)
 
         setupUi()
     }
@@ -96,7 +96,7 @@ class DevelopmentalMilestonesScreenThree : AppCompatActivity() {
                     val answers = collectAnswers()
 
 
-                    val milestoneId = 1
+                    val milestoneId = 3
                     if (milestoneId != -1) {
                         val resultData = ResultData(
                             milestone = milestoneId,

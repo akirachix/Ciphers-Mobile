@@ -18,15 +18,13 @@ class MilestoneDetailActivity : AppCompatActivity() {
         tvSummary = findViewById(R.id.tvSummary)
 
         val milestoneId = intent.getIntExtra("MILESTONE_ID", -1)
-        val category = intent.getStringExtra("CATEGORY") ?: "N/A"
-        val summary = intent.getStringExtra("SUMMARY") ?: "No details available"
+        val summary = intent.getStringExtra("SUMMARY") ?: ""
 
 
         val milestoneName = intent.getStringExtra("MILESTONE_NAME") ?: "Unknown Milestone"
 
 
         tvMilestoneName.text = milestoneName
-        tvCategory.text = category
         tvSummary.text = summary
     }
 }

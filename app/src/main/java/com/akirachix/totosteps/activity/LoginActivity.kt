@@ -22,6 +22,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.tvForgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
+
         supportActionBar?.hide()
 
         redirectIfLoggedIn()
@@ -31,11 +35,17 @@ class LoginActivity : AppCompatActivity() {
             result.onSuccess { loginResponse ->
                 Log.d("LoginActivity", "Login successful. User: ${loginResponse.user.first_name}")
                 persistLogin(loginResponse)
+                val userId = loginResponse.user.user_id
+                val email = loginResponse.user.email
+                Log.d("LoginActivity", "Login successful. User ID: $userId")
+                saveUserIdToSharedPreferences(userId)
+                saveEmailToSharedPreferences(email)
+
                 showToast("Login successful")
                 navigateToChildAccount()
             }.onFailure { throwable ->
-                Log.e("LoginActivity", "Login failed: ${throwable.message}")
-                showError(throwable.localizedMessage ?: "Login failed.")
+                Log.e("LoginActivity", "Please enter the correct email and password. ${throwable.message}")
+                showError(throwable.localizedMessage ?: "Please enter the correct email and password.")
             }
         })
 
@@ -75,12 +85,25 @@ class LoginActivity : AppCompatActivity() {
         Log.d("LoginActivity", "Login information persisted")
     }
 
+    private fun saveUserIdToSharedPreferences(userId: Int) {
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        sharedPreferences.edit().putInt("USER_ID", userId).apply()
+        Log.d("LoginActivity", "User ID saved to SharedPreferences: $userId")
+    }
+    private fun saveEmailToSharedPreferences(email: String){
+        val sharePref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        sharePref.edit().putString("USER_EMAIL", email)
+        Log.d("LoginActivity", "User email saved to SharedPreferences: $email")
+
+    }
+
     private fun navigateToChildAccount() {
         Log.d("LoginActivity", "Navigating to ChildAccountActivity")
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
+
 
     private fun navigateToSignUp() {
         startActivity(Intent(this, SignupActivity::class.java))
@@ -91,7 +114,9 @@ class LoginActivity : AppCompatActivity() {
         showToast(message)
     }
 
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 }
