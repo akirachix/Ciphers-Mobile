@@ -27,6 +27,18 @@
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31">
         <activity
+            android:name=".activity.SetNewPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OnboardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectChildQuestionnaire"
+            android:exported="false" />
+        <activity
             android:name=".activity.SelectChildActivity"
             android:exported="false" />
         <activity
@@ -130,4 +142,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

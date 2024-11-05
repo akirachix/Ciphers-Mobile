@@ -32,6 +32,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+
     fun login(email: String, password: String) {
         if (!validateForm(email, password)) return
 
@@ -46,7 +47,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                     _loginResult.postValue(Result.success(loginResponse))
                     _currentUser.postValue(loginResponse.user)
                 } else {
-                    _loginResult.postValue(Result.failure(Throwable(response.body()?.message ?: "Login failed")))
+                    _loginResult.postValue(Result.failure(Throwable(response.body()?.message ?: "Please enter the correct email and password.")))
                 }
             } catch (e: HttpException) {
                 _loginResult.postValue(Result.failure(Throwable("Network error: ${e.message()}")))

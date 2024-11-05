@@ -35,8 +35,8 @@ class ResourceDetailsActivity : AppCompatActivity() {
         val activitiesText = resourcesActivities.joinToString("\n") { it }
 
 
-        binding.tvTips.text = tipsText
-        binding.tvActivities.text = activitiesText
+        binding.tvTips.text = tipsText.trim()
+        binding.tvActivities.text = activitiesText.trim()
 
 
         Log.d("ResourceDetails", "Tips: $tipsText")

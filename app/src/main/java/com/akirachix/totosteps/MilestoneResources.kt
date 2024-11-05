@@ -62,13 +62,16 @@ class MilestoneResources : AppCompatActivity() {
     }
 
     private fun navigateToDetail(milestone: Milestone) {
+        // Convert the summary Map to a formatted string
+        val summaryText = milestone.summary.entries.joinToString("\n\n") { (category, items) ->
+            "$category:\n${items.joinToString("\n") { "• $it" }}"
+        }
+
         val intent = Intent(this, MilestoneDetailActivity::class.java).apply {
             putExtra("MILESTONE_ID", milestone.milestone_id)
-            putExtra("CATEGORY", milestone.category)
-            putExtra("SUMMARY", milestone.summary.joinToString("\n"))
+            putExtra("CATEGORY", milestone.description)
+            putExtra("SUMMARY", summaryText)  // Now passing a formatted string
+            putExtra("MILESTONE_NAME", milestone.name)  // Don't forget to add this if needed
         }
         startActivity(intent)
-    }
-
-
-}
+    }}

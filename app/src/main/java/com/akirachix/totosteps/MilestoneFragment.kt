@@ -63,12 +63,16 @@ class MilestoneFragment : Fragment() {
     }
 
     private fun navigateToDetail(milestone: Milestone) {
+        // Convert the summary Map to a formatted string
+        val summaryText = milestone.summary.entries.joinToString("\n\n") { (category, items) ->
+            "$category:\n${items.joinToString("\n") { "• $it" }}"
+        }
+
         val intent = Intent(requireContext(), MilestoneDetailActivity::class.java).apply {
             putExtra("MILESTONE_ID", milestone.milestone_id)
-            putExtra("CATEGORY", milestone.category)
-            putExtra("SUMMARY", milestone.summary.joinToString("\n"))
-            putExtra("MILESTONE_NAME", milestone.name) // Pass the name
+            putExtra("CATEGORY", milestone.description)
+            putExtra("SUMMARY", summaryText)  // Now passing a String instead of Map
+            putExtra("MILESTONE_NAME", milestone.name)
         }
         startActivity(intent)
-    }
-}
+    }}

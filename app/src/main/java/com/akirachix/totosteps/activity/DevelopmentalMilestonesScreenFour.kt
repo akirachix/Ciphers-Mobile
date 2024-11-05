@@ -39,7 +39,7 @@ class DevelopmentalMilestonesScreenFour : AppCompatActivity() {
 
         observeViewModel()
 
-        viewModel.fetchQuestions("Cognitive", 1)
+        viewModel.fetchQuestions("Cognitive", 3)
 
         setupUi()
     }
@@ -94,7 +94,7 @@ class DevelopmentalMilestonesScreenFour : AppCompatActivity() {
 
                     val answers = collectAnswers()
 
-                    val milestoneId = 1
+                    val milestoneId = 3
                     if (milestoneId != -1) {
 
                         val resultData = ResultData(
